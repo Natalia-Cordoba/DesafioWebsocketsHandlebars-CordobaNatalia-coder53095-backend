@@ -15,7 +15,6 @@ sessionRouter.get('/registroForm', (req, res) => {
     })
 })
 
-
 sessionRouter.get('/login', async (req, res) => {
     const { email, password } = req.body
 
