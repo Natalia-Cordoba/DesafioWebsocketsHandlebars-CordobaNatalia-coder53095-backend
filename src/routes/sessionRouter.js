@@ -3,6 +3,19 @@ import userModel from "../models/user.js";
 
 const sessionRouter = Router()
 
+sessionRouter.get('/', (req, res) => {
+    res.render("templates/login", {
+        css: 'loginRegistro.css'
+    })
+})
+
+sessionRouter.get('/registroForm', (req, res) => {
+    res.render("templates/register", {
+        css: 'loginRegistro.css'
+    })
+})
+
+
 sessionRouter.get('/login', async (req, res) => {
     const { email, password } = req.body
 
@@ -25,13 +38,14 @@ sessionRouter.get('/login', async (req, res) => {
 })
 
 sessionRouter.post('/register', async (req,res) => {
+
     try {
-        const { first_name, last_name, age, password, email, } = req.body
+        const { first_name, last_name, age, email, password } = req.body
         const findUser = await userModel.findOne({ email: email })
         if (findUser) {
             res.status(400).send("Ya existe un usuario con ese email")
         } else {
-            await userModel.create({ first_name, last_name, age, password, email })
+            await userModel.create({ first_name, last_name, age, email, password })
             res.status(201).send("Usuario creado correctamente")
         }
 

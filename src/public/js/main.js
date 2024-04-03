@@ -30,3 +30,4 @@ socket.on('mensajeLogs', info => {
         messageLogs.innerHTML += `<p>${mensaje.hora}hs. Usuario ${mensaje.usuario} dice: ${mensaje.mensaje}</p>`
     })
 })
+
